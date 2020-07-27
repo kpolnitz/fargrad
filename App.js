@@ -1,9 +1,11 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import React, { useState, Component } from 'react';
+import { Text, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter'
+import SignUpScreen from './register'
+import SignInScreen from './login'
 const styles = StyleSheet.create({
   titleText: {
     fontFamily: "AppleSDGothicNeo-Bold",
@@ -17,6 +19,13 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center"
   }, 
+  buttonText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: "AppleSDGothicNeo-Bold",
+    color: "#34a4eb",
+    textAlign: "center"
+  }, 
   container: {
     flex: 1, 
     justifyContent: "center",
@@ -27,11 +36,31 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+
+  inputStyleSU: {
+    backgroundColor: "white",
+    
+    paddingTop: 10, 
+    paddingBottom: 10,
+    paddingLeft: 47,
+    paddingRight: 47,
+    borderWidth: 1,
+    borderRadius: 30,
+    borderColor: 'white',
+  },
+
+  inputStyleSI: {
+    backgroundColor: "white",
+    
+    paddingTop: 10, 
+    paddingBottom: 10,
+    paddingLeft: 50,
+    paddingRight: 50,
+    borderWidth: 1,
+    borderRadius: 30,
+    borderColor: 'white',
   }
-
-
-
-
 })
 const YourApp = () => {
 
@@ -42,34 +71,30 @@ const YourApp = () => {
         <Text style={styles.baseText} >While college may have ended, your connections have not.</Text>
         <Text>{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
         {/*<View style={styles.buttons}> */}
-          <Button title="Sign In" color="white"       onPress={() =>
-        navigation.navigate('Sign In', { name: 'Jane' })
-      }/>
-          <Button title="Sign Up" color="white"       onPress={() =>
-        navigation.navigate('Sign Up', { name: 'Jane' })
-      }/>
+          <TouchableOpacity
+            style={styles.inputStyleSI}
+            activeOpacity={0.5}
+            onPress={() =>
+              navigation.navigate('Sign In', { name: 'Sign In'}, )
+            }>
+            <Text style={styles.buttonText} >Sign In</Text>
+          </TouchableOpacity>
+          <Text></Text>
+          <TouchableOpacity
+            style={styles.inputStyleSU}
+            activeOpacity={0.5}
+            onPress={() =>
+              navigation.navigate('Sign Up', { name: 'Sign Up'}, )
+            }>
+            <Text style={styles.buttonText} >Sign Up</Text>
+          </TouchableOpacity>
+
         {/* </View> */}
         {/*
         <Button title="+" onPress={addState} color="white" />
         <Text>{numClicks}</Text>
         <Button title="-" onPress={deleteState} color="white" />
               */}
-      </View>
-    );
-  };
-
-  const SignUpScreen = ({ navigation }) => {
-    return (
-      <View style={styles.container}>
-        <TypeWriter style={styles.titleText} typing={1}>Sign Up.</TypeWriter>
-      </View>
-    );
-  };
-
-  const SignInScreen = ({ navigation }) => {
-    return (
-      <View style={styles.container}>
-        <TypeWriter style={styles.titleText} typing={1}>Sign In.</TypeWriter>
       </View>
     );
   };
@@ -87,7 +112,7 @@ const YourApp = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator   screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen}  />
         <Stack.Screen name="Sign In" component={SignInScreen} />
         <Stack.Screen name="Sign Up" component={SignUpScreen} />
