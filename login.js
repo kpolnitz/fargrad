@@ -27,12 +27,8 @@ const SignInScreen = props => {
 
   const handleSubmitPress = () => {
     setErrortext('');
-    if (!userEmail) {
-      alert('Please fill Email');
-      return;
-    }
-    if (!userPassword) {
-      alert('Please fill Password');
+    if (!userEmail || !userPassword) {
+      alert('Missing username and/or email. Please fill in the information.');
       return;
     }
     setLoading(true);

@@ -21,8 +21,7 @@ import Loader from './loader';
 const SignUpScreen = props => {
   let [userName, setUserName] = useState('');
   let [userEmail, setUserEmail] = useState('');
-  let [userAge, setUserAge] = useState('');
-  let [userAddress, setUserAddress] = useState('');
+
   let [loading, setLoading] = useState(false);
   let [errortext, setErrortext] = useState('');
   let [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
@@ -146,8 +145,10 @@ const SignUpScreen = props => {
             onPress={handleSubmitButton}>
             <Text style={styles.buttonTextStyle}>REGISTER</Text>
           </TouchableOpacity>
+          <Text style={styles.registerTextStyle}
+              onPress={() => props.navigation.navigate('Sign In')}>Back to Login</Text>
           <Text>{"\n"}{"\n"}</Text>
-          <Text></Text>
+
           <Text
               style={styles.registerTextStyle}
               onPress={() => props.navigation.navigate('Home')}>
